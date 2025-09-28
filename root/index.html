@@ -36,45 +36,5 @@
         <p>&copy; 2025 Karaoke Show Finder</p>
     </footer>
     <script src="script.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const cities = ["Toronto", "Vancouver", "New York", "London", "Sydney", "Los Angeles", "Chicago", "Montreal", "San Francisco", "Berlin"];
-    const input = document.getElementById("city");
-    const suggestionBox = document.createElement("div");
-    suggestionBox.setAttribute("id", "city-suggestions");
-    suggestionBox.style.border = "1px solid #ccc";
-    suggestionBox.style.position = "absolute";
-    suggestionBox.style.backgroundColor = "#fff";
-    suggestionBox.style.zIndex = "1000";
-    input.parentNode.appendChild(suggestionBox);
-
-    input.addEventListener("input", function() {
-        const val = this.value.toLowerCase();
-        suggestionBox.innerHTML = "";
-        if (val.length === 0) return;
-        const matches = cities.filter(city => city.toLowerCase().startsWith(val));
-        matches.forEach(match => {
-            const item = document.createElement("div");
-            item.textContent = match;
-            item.style.padding = "5px";
-            item.style.cursor = "pointer";
-            item.addEventListener("click", function() {
-                input.value = match;
-                suggestionBox.innerHTML = "";
-            });
-            suggestionBox.appendChild(item);
-        });
-    });
-
-    document.addEventListener("click", function(e) {
-        if (e.target !== input) {
-            suggestionBox.innerHTML = "";
-        }
-    });
-});
-</script>
-
-<div style="text-align:center;"><img src="f91ed77eb5.png" alt="Karaoke Singing" style="max-width:100%;height:auto;"></div>
 </body>
 </html>
