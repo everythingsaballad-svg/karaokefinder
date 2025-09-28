@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Karaoke Show Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Karaoke Show Finder</h1>
+        <p>Find karaoke shows by city and day of the week</p>
+    </header>
+    <main>
+        <section class="search">
+            <form id="searchForm">
+                <input type="text" id="city" placeholder="Enter city name" required>
+                <select id="day">
+                    <option value="">Select day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+        <section id="results" class="results">
+            <!-- Show listings will appear here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Karaoke Show Finder</p>
+    </footer>
+    <script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const cities = ["Toronto", "Vancouver", "New York", "London", "Sydney", "Los Angeles", "Chicago", "Montreal", "San Francisco", "Berlin"];
+    const input = document.getElementById("city");
+    const suggestionBox = document.createElement("div");
+    suggestionBox.setAttribute("id", "city-suggestions");
+    suggestionBox.style.border = "1px solid #ccc";
+    suggestionBox.style.position = "absolute";
+    suggestionBox.style.backgroundColor = "#fff";
+    suggestionBox.style.zIndex = "1000";
+    input.parentNode.appendChild(suggestionBox);
+
+    input.addEventListener("input", function() {
+        const val = this.value.toLowerCase();
+        suggestionBox.innerHTML = "";
+        if (val.length === 0) return;
+        const matches = cities.filter(city => city.toLowerCase().startsWith(val));
+        matches.forEach(match => {
+            const item = document.createElement("div");
+            item.textContent = match;
+            item.style.padding = "5px";
+            item.style.cursor = "pointer";
+            item.addEventListener("click", function() {
+                input.value = match;
+                suggestionBox.innerHTML = "";
+            });
+            suggestionBox.appendChild(item);
+        });
+    });
+
+    document.addEventListener("click", function(e) {
+        if (e.target !== input) {
+            suggestionBox.innerHTML = "";
+        }
+    });
+});
+</script>
+
+<div style="text-align:center;"><img src="f91ed77eb5.png" alt="Karaoke Singing" style="max-width:100%;height:auto;"></div>
+</body>
+</html>
